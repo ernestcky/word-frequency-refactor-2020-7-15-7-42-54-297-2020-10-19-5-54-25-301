@@ -38,17 +38,4 @@ public class WordFrequencyGame {
         return String.format("%s %d", wordFrequency.getWord(), wordFrequency.getWordCount());
     }
 
-    private Map<String, List<WordFrequency>> getWordCountMap(List<WordFrequency> wordFrequencyList) {
-        Map<String, List<WordFrequency>> wordCountMap = new HashMap<>();
-        for (WordFrequency wordFrequency : wordFrequencyList) {
-            if (!wordCountMap.containsKey(wordFrequency.getWord())) {
-                ArrayList wordCountList = new ArrayList<>();
-                wordCountList.add(wordFrequency);
-                wordCountMap.put(wordFrequency.getWord(), wordCountList);
-            } else {
-                wordCountMap.get(wordFrequency.getWord()).add(wordFrequency);
-            }
-        }
-        return wordCountMap;
-    }
 }
