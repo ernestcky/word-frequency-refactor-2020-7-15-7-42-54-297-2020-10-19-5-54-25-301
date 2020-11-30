@@ -10,17 +10,18 @@ public class WordFrequencyGame {
     public String getResult(String sentence) {
         try {
             List<WordFrequency> wordFrequencyList = this.calculateWordFrequency(sentence);
-
-            wordFrequencyList.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
-
-            StringJoiner wordFrequencyResult = new StringJoiner(LINE_ESCAPER);
-            for (WordFrequency wordFrequency : wordFrequencyList) {
-                wordFrequencyResult.add(this.generateWordFrequencyLine(wordFrequency));
-            }
-            return wordFrequencyResult.toString();
+            return this.buildWordFrequencyResult(wordFrequencyList);
         } catch (Exception exception) {
             return EXCEPTION_CALCULATE_ERROR;
         }
+    }
+    private String buildWordFrequencyResult(List<WordFrequency> wordFrequencyList) {
+        wordFrequencyList.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
+        StringJoiner wordFrequencyResult = new StringJoiner(LINE_ESCAPER);
+        for (WordFrequency wordFrequency : wordFrequencyList) {
+            wordFrequencyResult.add(this.generateWordFrequencyLine(wordFrequency));
+        }
+        return wordFrequencyResult.toString();
     }
 
     private List<WordFrequency> calculateWordFrequency(String sentence) {
