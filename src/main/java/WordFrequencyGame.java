@@ -1,3 +1,5 @@
+import exception.CalculationErrorException;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -7,12 +9,12 @@ public class WordFrequencyGame {
     public static final String LINE_ESCAPER = "\n";
     public static final String EXCEPTION_CALCULATE_ERROR = "Calculate Error";
 
-    public String getResult(String sentence) {
+    public String getResult(String sentence) throws CalculationErrorException {
         try {
             List<WordFrequency> wordFrequencyList = this.calculateWordFrequency(sentence);
             return this.buildWordFrequencyResult(wordFrequencyList);
         } catch (Exception exception) {
-            return EXCEPTION_CALCULATE_ERROR;
+            throw new CalculationErrorException(EXCEPTION_CALCULATE_ERROR);
         }
     }
     private String buildWordFrequencyResult(List<WordFrequency> wordFrequencyList) {
