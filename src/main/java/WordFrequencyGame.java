@@ -5,8 +5,13 @@ import java.util.Map;
 import java.util.StringJoiner;
 
 public class WordFrequencyGame {
+
+    public static final String REGEX_WHITE_SPACE = "\\s+";
+    public static final String LINE_ESCAPER = "\n";
+    public static final String EXCEPTION_CALCULATE_ERROR = "Calculate Error";
+
     public String getResult(String sentence) {
-        if (sentence.split("\\s+").length == 1) {
+        if (sentence.split(REGEX_WHITE_SPACE).length == 1) {
             return sentence + " 1";
         } else {
             try {
@@ -31,14 +36,14 @@ public class WordFrequencyGame {
 
                 wordFrequencyList.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
 
-                StringJoiner wordFrequencyResult = new StringJoiner("\n");
+                StringJoiner wordFrequencyResult = new StringJoiner(LINE_ESCAPER);
                 for (WordFrequency wordFrequency : wordFrequencyList) {
                     String wordFrequencyLine = wordFrequency.getWord() + " " + wordFrequency.getWordCount();
                     wordFrequencyResult.add(wordFrequencyLine);
                 }
                 return wordFrequencyResult.toString();
             } catch (Exception exception) {
-                return "Calculate Error";
+                return EXCEPTION_CALCULATE_ERROR;
             }
         }
     }
