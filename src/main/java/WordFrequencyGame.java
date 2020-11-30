@@ -33,13 +33,16 @@ public class WordFrequencyGame {
 
             StringJoiner wordFrequencyResult = new StringJoiner(LINE_ESCAPER);
             for (WordFrequency wordFrequency : wordFrequencyList) {
-                String wordFrequencyLine = wordFrequency.getWord() + " " + wordFrequency.getWordCount();
-                wordFrequencyResult.add(wordFrequencyLine);
+                wordFrequencyResult.add(this.generateWordFrequencyLine(wordFrequency));
             }
             return wordFrequencyResult.toString();
         } catch (Exception exception) {
             return EXCEPTION_CALCULATE_ERROR;
         }
+    }
+
+    private String generateWordFrequencyLine(WordFrequency wordFrequency) {
+        return String.format("%s %d", wordFrequency.getWord(), wordFrequency.getWordCount());
     }
 
     private Map<String, List<WordFrequency>> getListMap(List<WordFrequency> wordFrequencyList) {
